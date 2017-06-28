@@ -1,4 +1,5 @@
 <ngx-cs-slider (update)="handleSliderChange($event)"
+               [props]="sliderProps"
                [startAngle]="start" [angleLength]="length">
   <!-- start icon -->
   <svg:g class="acs-start-icon" transform="translate(-8, -8) scale(1.1)">

@@ -1,5 +1,12 @@
 import {Component} from '@angular/core';
-import {IOutput} from './ngx-circular-slider-src/interfaces';
+import {IOutput, IProps} from './ngx-circular-slider-src/interfaces';
+
+const SLIDER_PROPS: IProps = {
+  gradientColorFrom: '#0081c5',
+  gradientColorTo: '#aaddf8',
+  segments: 24,
+  bgCircleColor: 'white'
+};
 
 @Component({
   selector: 'ngx-cs-root',
@@ -10,8 +17,9 @@ import {IOutput} from './ngx-circular-slider-src/interfaces';
 export class AppComponent {
   public startDate: Date;
   public endDate: Date;
-  public start: number = 0;
-  public length: number = 0;
+  public start = 0;
+  public length = 0;
+  public sliderProps = SLIDER_PROPS;
 
   constructor() {
     this.startDate = new Date();

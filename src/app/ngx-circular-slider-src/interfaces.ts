@@ -10,12 +10,12 @@ export interface IOutput {
 }
 
 export interface IProps {
-  segments: number;
-  strokeWidth: number;
-  radius: number;
-  gradientColorFrom: string;
-  gradientColorTo: string;
-  bgCircleColor: string;
+  segments?: number;
+  strokeWidth?: number;
+  radius?: number;
+  gradientColorFrom?: string;
+  gradientColorTo?: string;
+  bgCircleColor?: string;
   showClockFace?: boolean;
   clockFaceColor?: string;
 }
