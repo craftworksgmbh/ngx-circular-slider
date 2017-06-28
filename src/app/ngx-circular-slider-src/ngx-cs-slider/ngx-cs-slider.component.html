@@ -1,0 +1,63 @@
+<svg #circle [attr.height]="getContainerWidth()"
+     [attr.width]="getContainerWidth()">
+
+  <defs>
+    <linearGradient *ngFor="let segment of segments"
+                    [attr.key]="segment.id"
+                    [attr.id]="getGradientId(segment.id)"
+                    [attr.x1]="segment.arcs.fromX.toFixed(2)"
+                    [attr.y1]="segment.arcs.fromY.toFixed(2)"
+                    [attr.x2]="segment.arcs.toX.toFixed(2)"
+                    [attr.y2]="segment.arcs.toY.toFixed(2)">
+      <stop offset="0%" [attr.stop-color]="segment.colors.fromColor"/>
+      <stop offset="1" [attr.stop-color]="segment.colors.toColor"/>
+    </linearGradient>
+  </defs>
+
+  <!-- circle-donut -->
+  <g [attr.transform]="getTranslate()">
+    <circle
+      [attr.r]="props.radius"
+      [attr.stroke-width]="props.strokeWidth"
+      [attr.stroke]="props.bgCircleColor"
+      fill="transparent"/>
+
+    <g ngx-cs-clock-face *ngIf="props.showClockFace"
+       [radius]="(props.radius-props.strokeWidth/2)"
+       [stroke]="props.clockFaceColor">
+    </g>
+    <path *ngFor="let segment of segments"
+          [attr.d]="segment.d"
+          [attr.key]="segment.id"
+          [attr.stroke-width]="this.props.strokeWidth"
+          [attr.stroke]="getGradientUrl(segment.id)"
+          fill="transparent"/>
+
+
+    <!-- stop icon -->
+    <g #stopIcon
+       [attr.fill]="props.gradientColorTo"
+       [attr.transform]="getTranslateFrom(stop.toX, stop.toY)">
+      <circle [attr.r]="((this.props.strokeWidth - 1) / 2)"
+              [attr.fill]="this.props.bgCircleColor"
+              [attr.stroke]="this.props.gradientColorTo"
+              stroke-width="1"/>
+
+      <ng-content select=".acs-stop-icon"></ng-content>
+    </g>
+
+
+    <!-- start icon -->
+    <g #startIcon
+       [attr.fill]="this.props.gradientColorFrom"
+       [attr.transform]="getTranslateFrom(start.fromX, start.fromY)">
+      <circle [attr.r]="((this.props.strokeWidth - 1) / 2)"
+              [attr.fill]="this.props.bgCircleColor"
+              [attr.stroke]="this.props.gradientColorFrom"
+              stroke-width="1"/>
+
+      <ng-content select=".acs-start-icon"></ng-content>
+
+    </g>
+  </g>
+</svg>

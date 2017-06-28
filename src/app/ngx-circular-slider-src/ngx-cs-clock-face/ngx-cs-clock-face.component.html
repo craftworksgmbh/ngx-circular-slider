@@ -1,0 +1,22 @@
+<svg:g>
+  <line *ngFor="let clockLine of clockLines"
+        [attr.key]="clockLine.id"
+        [attr.stroke]="stroke"
+        [attr.stroke-width]="clockLine.strokeWidth"
+        [attr.x1]="clockLine.x1"
+        [attr.y1]="clockLine.y1"
+        [attr.x2]="clockLine.x2"
+        [attr.y2]="clockLine.y2">
+  </line>
+  <svg:g transform="translate(0, 5)">
+    <text *ngFor="let clockText of clockTexts"
+          [attr.key]="clockText.id"
+          [attr.fill]="stroke"
+          font-size="16"
+          text-anchor="middle"
+          [attr.x]="clockText.x"
+          [attr.y]="clockText.y">
+      {{clockText.id + 1}}
+    </text>
+  </svg:g>
+</svg:g>
