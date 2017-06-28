@@ -1,5 +1,6 @@
 # ngx-circular-slider
 ### powered by [craftworks GmbH](https://craftworks.at) used in the own TimeTracking Product
+#### inspired by iOS bedtime and [react-native-circular-slider](https://github.com/bgryszko/react-native-circular-slider)
 ## Installation
 
 To install this the slider, run:
