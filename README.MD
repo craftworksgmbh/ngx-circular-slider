@@ -50,7 +50,7 @@ Once the ngx-circular-slider module is imported, you can use it in your Angular 
 <ngx-cs-slider></ngx-cs-slider>
 ```
 
-##todos
+## todos
 * test module api
 * adapt readme
 * fixes module-api
