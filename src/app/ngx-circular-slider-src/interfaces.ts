@@ -16,10 +16,8 @@ export interface IProps {
   gradientColorFrom: string;
   gradientColorTo: string;
   bgCircleColor: string;
-  startAngle?: number;
-  angleLength?: number;
   showClockFace?: boolean;
-  clockFaceColor: string;
+  clockFaceColor?: string;
 }
 
 export interface IArc {

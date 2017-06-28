@@ -1,10 +1,12 @@
 import {
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit, Output,
+  OnInit,
+  Output,
   ViewChild
 } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
@@ -26,8 +28,6 @@ const DEFAULT_PROPS: IProps = {
   gradientColorFrom: '#ff9800',
   gradientColorTo: '#ffcf00',
   bgCircleColor: '#171717',
-  startAngle: Math.PI * 6 / 6,
-  angleLength: Math.PI / 6,
   showClockFace: true,
   clockFaceColor: '#9d9d9d'
 };
@@ -59,8 +59,8 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
 
   constructor() {
     this.props = DEFAULT_PROPS;
-    this.startAngle = DEFAULT_PROPS.startAngle;
-    this.angleLength = DEFAULT_PROPS.angleLength;
+    this.startAngle = 0;
+    this.angleLength = 0;
   }
 
   ngOnInit() {
@@ -71,9 +71,9 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
 
   ngOnChanges(changes: ISliderChanges) {
     console.log('changes', changes);
-    // this.props = (changes.props.firstChange ? Object.assign(DEFAULT_PROPS, changes.props.currentValue) : DEFAULT_PROPS);
-    // this.createSegments();
-    // this.calcStartAndStop();
+    this.props = (changes.props.firstChange ? Object.assign(DEFAULT_PROPS, changes.props.currentValue) : DEFAULT_PROPS);
+    this.createSegments();
+    this.calcStartAndStop();
   }
 
   ngOnDestroy() {
