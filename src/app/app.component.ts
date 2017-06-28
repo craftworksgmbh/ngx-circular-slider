@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IOutput} from './ngx-circular-slider-src/interfaces';
 
 @Component({
@@ -8,8 +8,10 @@ import {IOutput} from './ngx-circular-slider-src/interfaces';
 })
 
 export class AppComponent {
-  startDate: Date;
-  endDate: Date;
+  public startDate: Date;
+  public endDate: Date;
+  public start: number = 0;
+  public length: number = 0;
 
   constructor() {
     this.startDate = new Date();
@@ -18,6 +20,10 @@ export class AppComponent {
 
   public handleSliderChange(changes: IOutput) {
     console.info('changes in app ', changes);
+  }
+
+  public createRandomValues() {
+    this.length += 0.33;
   }
 
   // todo: functions are for using it (demo)

@@ -1,4 +1,5 @@
-<ngx-cs-slider (update)="handleSliderChange($event)">
+<ngx-cs-slider (update)="handleSliderChange($event)"
+               [startAngle]="start" [angleLength]="length">
   <!-- start icon -->
   <svg:g class="acs-start-icon" transform="translate(-8, -8) scale(1.1)">
     <svg:g>
@@ -19,3 +20,6 @@
     </svg:g>
   </svg:g>
 </ngx-cs-slider>
+
+
+<button (click)="createRandomValues()">Random Values</button>
