@@ -1,8 +1,8 @@
 # ngx-circular-slider
-
+### powered by [craftworks GmbH](https://craftworks.at) used in the own TimeTracking Product
 ## Installation
 
-To install this libsliderrary, run:
+To install this the slider, run:
 
 ```bash
 $ npm install ngx-circular-slider --save
@@ -53,6 +53,8 @@ Once the ngx-circular-slider module is imported, you can use it in your Angular 
 ## todos
 * test module api
 * adapt readme
+* replace gulp with webpack
+* generate types without *.d.ts
 * fixes module-api
 * tests
 
@@ -73,4 +75,4 @@ $ npm run docs
 
 ## License
 
-MIT © [Alexander Zulechner]
+MIT © [Alexander Zulechner@craftworks GmbH](alexander.zulechner@craftworks.at)
