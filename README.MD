@@ -2,15 +2,15 @@
 
 ## Installation
 
-To install this library, run:
+To install this libsliderrary, run:
 
 ```bash
 $ npm install ngx-circular-slider --save
 ```
 
-## Consuming your library
+## Consuming your ngx-circular-slider
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
+You can import the slider in any Angular application by running:
 
 ```bash
 $ npm install ngx-circular-slider
@@ -42,15 +42,19 @@ import { NgxCircularSliderModule } from 'ngx-circular-slider';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Once the ngx-circular-slider module is imported, you can use it in your Angular application:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
+<!-- You can now use the slider in app.component.html -->
+
 <ngx-cs-slider></ngx-cs-slider>
 ```
+
+##todos
+* test module api
+* adapt readme
+* fixes module-api
+* tests
 
 ## Development
 
