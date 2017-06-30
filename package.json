@@ -2,10 +2,11 @@
   "name": "ngx-circular-slider",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zualexander/ngx-circular-slider.git"
+    "url": "https://github.com/craftworksgmbh/ngx-circular-slider"
   },
   "author": {
-    "name": "Alexander Zulechner"
+    "name": "Alexander Zulechner",
+    "url": "https://craftworks.at"
   },
   "keywords": [
     "angular"
@@ -16,7 +17,7 @@
   },
   "module": "ngx-circular-slider.js",
   "typings": "ngx-circular-slider.d.ts",
-  "version": "0.0.0",
+  "version": "0.3.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
