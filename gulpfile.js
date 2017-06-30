@@ -159,16 +159,23 @@ gulp.task('copy:manifest', function () {
     .pipe(rename('package.json'))
     .pipe(gulp.dest(distFolder));
 });
+/*
+ * 9. Copy README.md from / to /dist
+ */
+gulp.task('copy:readme', function () {
+    return gulp.src([path.join(rootFolder, 'README.MD')])
+        .pipe(gulp.dest(distFolder));
+  });
 
 /**
- * 9. Delete /.tmp folder
+ * 10. Delete /.tmp folder
  */
 gulp.task('clean:tmp', function () {
   return deleteFolders([tmpFolder]);
 });
 
 /**
- * 10. Delete /build folder
+ * 11. Delete /build folder
  */
 gulp.task('clean:build', function () {
   return deleteFolders([buildFolder]);
@@ -185,6 +192,7 @@ gulp.task('compile', function () {
     'rollup:umd',
     'copy:build',
     'copy:manifest',
+    'copy:readme',
     'clean:build',
     'clean:tmp',
     function (err) {
