@@ -101,4 +101,4 @@ $ npm run docs
 
 ## License
 
-MIT © [Alexander Zulechner@craftworks GmbH](alexander.zulechner@craftworks.at)
+MIT © [Alexander Zulechner@craftworks GmbH](mailto:alexander.zulechner@craftworks.at)
