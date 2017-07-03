@@ -48,7 +48,29 @@ Once the ngx-circular-slider module is imported, you can use it in your Angular 
 ```xml
 <!-- You can now use the slider in app.component.html -->
 
-<ngx-cs-slider></ngx-cs-slider>
+<ngx-cs-slider (update)="handleSliderChange($event)"
+               [props]="sliderProps"
+               [startAngle]="start" 
+               [angleLength]="length">
+```
+
+## API
+ 
+* **`startAngle`** [`number`] - **required** the angle of the circle where the slider starts
+* **`angleLength`** [`number`] - **required** the length of the circum-radius for the slider
+* **`update`** [`$event({angleLength: number; startAngle: number;})`] - the handler for the update event which returns the angleLength and the startAngle after the slider was changed
+* **`props`** [`IProps`] - the properties for the slider.
+```typescript
+interface IProps {
+  segments?: number;
+  strokeWidth?: number;
+  radius?: number;
+  gradientColorFrom?: string;
+  gradientColorTo?: string;
+  bgCircleColor?: string;
+  showClockFace?: boolean;
+  clockFaceColor?: string;
+}
 ```
 
 ## todos
