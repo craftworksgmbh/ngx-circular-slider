@@ -21,7 +21,7 @@
   },
   "module": "ngx-circular-slider.js",
   "typings": "ngx-circular-slider.d.ts",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
