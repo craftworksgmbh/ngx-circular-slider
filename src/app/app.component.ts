@@ -4,7 +4,7 @@ import {IOutput, IProps} from './ngx-circular-slider-src/interfaces';
 const SLIDER_PROPS: IProps = {
   gradientColorFrom: '#0081c5',
   gradientColorTo: '#aaddf8',
-  segments: 24,
+  segments: 48,
   bgCircleColor: 'white'
 };
 
