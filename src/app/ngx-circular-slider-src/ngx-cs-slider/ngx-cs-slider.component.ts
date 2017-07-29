@@ -20,7 +20,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {interpolateHcl} from 'd3-interpolate';
 import {IArc, IColor, ICoords, IOutput, IProps, ISegment, ISliderChanges} from '../interfaces';
 
-const THROTTLE_DEFAULT = 100;
+const THROTTLE_DEFAULT = 50;
 const DEFAULT_PROPS: IProps = {
   segments: 6,
   strokeWidth: 40,
@@ -56,6 +56,14 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
   private stopIcon: ElementRef;
   @ViewChild('startIcon')
   private startIcon: ElementRef;
+
+  private static extractMouseEventCoords(evt: MouseEvent | TouchEvent) {
+    const coords: ICoords = (evt instanceof MouseEvent ? {
+      x: evt.clientX,
+      y: evt.clientY
+    } : {x: evt.changedTouches.item(0).clientX, y: evt.changedTouches.item(0).clientY});
+    return coords;
+  }
 
   constructor() {
     this.props = DEFAULT_PROPS;
@@ -125,11 +133,9 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     this.stopSubscription = null;
   }
 
-  private handleStartPan(res: MouseEvent | TouchEvent) {
-    const coords: ICoords = (res instanceof MouseEvent ? {
-      x: res.clientX,
-      y: res.clientY
-    } : {x: res.touches.item(0).clientX, y: res.touches.item(0).clientY});
+  private handleStartPan(evt: MouseEvent | TouchEvent) {
+    const coords = NgxCircularSliderComponent.extractMouseEventCoords(evt);
+    console.log(coords);
 
     this.setCircleCenter();
     const currentAngleStop = (this.startAngle + this.angleLength) % (2 * Math.PI);
@@ -150,11 +156,8 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     this.onUpdate();
   }
 
-  private handleStopPan(res: MouseEvent | TouchEvent) {
-    const coords: ICoords = (res instanceof MouseEvent ? {
-      x: res.clientX,
-      y: res.clientY
-    } : {x: res.touches.item(0).clientX, y: res.touches.item(0).clientY});
+  private handleStopPan(evt: MouseEvent | TouchEvent) {
+    const coords = NgxCircularSliderComponent.extractMouseEventCoords(evt);
     this.setCircleCenter();
     const newAngle = Math.atan2(coords.y - this.circleCenterY, coords.x - this.circleCenterX) + Math.PI / 2;
     let newAngleLength = (newAngle - this.startAngle) % (2 * Math.PI);
@@ -165,7 +168,6 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
 
     this.angleLength = newAngleLength;
     this.onUpdate();
-
   }
 
   private calcStartAndStop() {
@@ -227,17 +229,20 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     }
   }
 
-  public getContainerWidth() {
-    const {strokeWidth, radius} = this.props;
-    return strokeWidth + radius * 2 + 2;
-  }
-
   private setCircleCenter() {
-    const px = this.circle.nativeElement.x.baseVal.value;
-    const py = this.circle.nativeElement.y.baseVal.value;
+    // todo: nicer solution to use document.body?
+    const bodyRect = document.body.getBoundingClientRect();
+    const elemRect = this.circle.nativeElement.getBoundingClientRect();
+    const px = elemRect.left - bodyRect.left;
+    const py = elemRect.top - bodyRect.top;
     const halfOfContainer = this.getContainerWidth() / 2;
     this.circleCenterX = px + halfOfContainer;
     this.circleCenterY = py + halfOfContainer;
+  }
+
+  public getContainerWidth() {
+    const {strokeWidth, radius} = this.props;
+    return strokeWidth + radius * 2 + 2;
   }
 
   public getGradientId(index) {
