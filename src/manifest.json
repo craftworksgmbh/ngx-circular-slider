@@ -1,38 +1,46 @@
 {
-  "name": "ngx-circular-slider",
-  "version": "0.5.3",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zualexander/ngx-circular-slider.git"
-  },
-  "author": {
-    "name": "Alexander Zulechner",
-    "url": "https://craftworks.at"
-  },
-  "keywords": [
-    "angular",
-    "circular-slider",
-    "slider",
-    "iOS bedtime",
-    "timerange"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zualexander/ngx-circular-slider.git/issues"
-  },
-  "module": "index.js",
-  "typings": "ngx-circular-slider.d.ts",
-  "main": "ngx-circular-slider.umd.js",
-  "peerDependencies": {
-    "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "rxjs": "^5.1.0",
-    "d3-interpolate": "1.1.5"
-  },
-  "dependencies": {
-    "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "rxjs": "^5.1.0",
-    "d3-interpolate": "1.1.5"
-  }
+    "name": "ngx-circular-slider",
+    "version": "0.5.3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zualexander/ngx-circular-slider.git"
+    },
+    "author": {
+        "name": "Alexander Zulechner",
+        "url": "https://craftworks.at"
+    },
+    "keywords": [
+        "angular",
+        "circular-slider",
+        "slider",
+        "iOS bedtime",
+        "timerange"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/zualexander/ngx-circular-slider.git/issues"
+    },
+    "module": "index.js",
+    "typings": "ngx-circular-slider.d.ts",
+    "main": "ngx-circular-slider.umd.js",
+    "peerDependencies": {
+        "@angular/core": "^4.0.0",
+        "@angular/common": "^4.0.0",
+        "rxjs": "^5.1.0",
+        "d3-interpolate": "1.1.5"
+    },
+    "dependencies": {
+        "@angular/common": "^4.0.0",
+        "@angular/compiler": "^4.0.0",
+        "@angular/core": "^4.0.0",
+        "@angular/forms": "^4.0.0",
+        "@angular/http": "^4.0.0",
+        "@angular/platform-browser": "^4.0.0",
+        "@angular/platform-browser-dynamic": "^4.0.0",
+        "@angular/router": "^4.0.0",
+        "core-js": "^2.4.1",
+        "d3-interpolate": "^1.1.5",
+        "rxjs": "^5.1.0",
+        "zone.js": "^0.8.4"
+    }
 }
