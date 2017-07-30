@@ -165,6 +165,7 @@ gulp.task('copy:manifest', function () {
       const contentJSON = JSON.parse(content);
 
       contentJSON.version = p.version;
+      contentJSON.dependencies = p.dependencies;
       content = JSON.stringify(contentJSON);
       return content;
     }))
