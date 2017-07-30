@@ -78,7 +78,6 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   ngOnChanges(changes: ISliderChanges) {
-    console.log('changes', changes);
     if (changes.props) {
       this.props = (changes.props.firstChange ? Object.assign(DEFAULT_PROPS, changes.props.currentValue) : DEFAULT_PROPS);
     }
@@ -101,7 +100,10 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
       Observable.fromEvent(document, 'mousemove'),
       Observable.fromEvent(document, 'touchmove')
     );
-    const mouseUp$ = Observable.fromEvent(document, 'mouseup');
+    const mouseUp$ = Observable.merge(
+      Observable.fromEvent(document, 'mouseup'),
+      Observable.fromEvent(document, 'touchend')
+    );
 
     this.startSubscription = Observable.merge(
       Observable.fromEvent(this.startIcon.nativeElement, 'touchstart'),
@@ -135,7 +137,6 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
 
   private handleStartPan(evt: MouseEvent | TouchEvent) {
     const coords = NgxCircularSliderComponent.extractMouseEventCoords(evt);
-    console.log(coords);
 
     this.setCircleCenter();
     const currentAngleStop = (this.startAngle + this.angleLength) % (2 * Math.PI);
