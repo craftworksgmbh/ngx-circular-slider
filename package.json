@@ -32,7 +32,7 @@
     "e2e": "ng e2e",
     "publish": "gulp build",
     "docs": "gulp docs"
-  },k
+  },
   "dependencies": {
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
