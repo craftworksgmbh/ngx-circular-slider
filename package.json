@@ -1,5 +1,6 @@
 {
   "name": "ngx-circular-slider",
+  "version": "0.5.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/craftworksgmbh/ngx-circular-slider"
@@ -21,7 +22,6 @@
   },
   "module": "ngx-circular-slider.js",
   "typings": "ngx-circular-slider.d.ts",
-  "version": "0.5.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +32,7 @@
     "e2e": "ng e2e",
     "publish": "gulp build",
     "docs": "gulp docs"
-  },
+  },k
   "dependencies": {
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
