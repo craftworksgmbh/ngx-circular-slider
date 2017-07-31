@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NgxCircularSliderComponent} from './ngx-circular-slider.component';
+import {NgxCircularSliderComponent} from './ngx-cs-slider.component';
+import {NgxCircularSliderModule} from '../ngx-circular-slider.module';
 
 
 describe('NgxCircularSliderComponent', () => {
@@ -8,7 +9,9 @@ describe('NgxCircularSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NgxCircularSliderComponent]
+      imports: [
+        NgxCircularSliderModule
+      ]
     })
       .compileComponents();
   }));

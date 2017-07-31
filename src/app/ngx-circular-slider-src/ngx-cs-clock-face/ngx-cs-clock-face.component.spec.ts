@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NgXCSClockFaceComponent } from './clock-face.component';
+import {NgXCSClockFaceComponent} from './ngx-cs-clock-face.component';
+import {NgxCircularSliderModule} from '../ngx-circular-slider.module';
 
 describe('NgXCSClockFaceComponent', () => {
   let component: NgXCSClockFaceComponent;
@@ -8,9 +9,11 @@ describe('NgXCSClockFaceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgXCSClockFaceComponent ]
+      imports: [
+        NgxCircularSliderModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
