@@ -9,7 +9,7 @@
 To install this the slider, run:
 
 ```bash
-$ npm install ngx-circular-slider --save
+npm install ngx-circular-slider --save
 ```
 
 ## Consuming your ngx-circular-slider
@@ -17,7 +17,7 @@ $ npm install ngx-circular-slider --save
 You can import the slider in any Angular application by running:
 
 ```bash
-$ npm install ngx-circular-slider
+npm install ngx-circular-slider
 ```
 
 and then from your Angular `AppModule`:
@@ -53,12 +53,12 @@ Once the ngx-circular-slider module is imported, you can use it in your Angular 
 
 <ngx-cs-slider (update)="handleSliderChange($event)"
                [props]="sliderProps"
-               [startAngle]="start" 
+               [startAngle]="start"
                [angleLength]="length">
 ```
 
 ## API
- 
+
 * **`startAngle`** [`number`] - **required** the angle of the circle where the slider starts
 * **`angleLength`** [`number`] - **required** the length of the circum-radius for the slider
 * **`update`** [`$event({angleLength: number; startAngle: number;})`] - the handler for the update event which returns the angleLength and the startAngle after the slider was changed
@@ -91,12 +91,13 @@ Put your library code in **src/app/library** folder. Only this folder and subfol
 
 To generate library's `*.js`, `*.d.ts` and `*.metadata.json` files:
 ```bash
-$ npm run publish
+npm version patch|minor|major
+npm run publish dist
 ```
 
 To generate the doc:
 ```bash
-$ npm run docs
+npm run docs
 ```
 
 ## License

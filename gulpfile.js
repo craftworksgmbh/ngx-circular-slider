@@ -9,6 +9,8 @@ var gulp = require('gulp'),
   inlineResources = require('./tools/gulp/inline-resources'),
   typedoc = require("gulp-typedoc"),
   replace = require('gulp-replace');
+const change = require('gulp-change');
+const jsonFormat = require('gulp-json-format');
 
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
@@ -20,11 +22,11 @@ const sources = [`${srcFolder}/app/ngx-circular-slider-src/**/*`, `!${srcFolder}
  * library external dependencies
  */
 const externalDependencies = {
-        typescript: 'ts',
-        '@angular/core': '@angular/core',
-        '@angular/common': '@angular/common',
-        'rxjs/Rx': 'rxjs/Rx'
-      };
+  typescript: 'ts',
+  '@angular/core': '@angular/core',
+  '@angular/common': '@angular/common',
+  'rxjs/Rx': 'rxjs/Rx'
+};
 
 function resolveDependencies(id) {
   return externalDependencies[id];
@@ -153,9 +155,22 @@ gulp.task('copy:build', function () {
 
 /**
  * 8. Copy manifest.json from /src to /dist/package.json
+ * and inject version inject version there (from src package.json) and also adapts it in manifest.json
  */
 gulp.task('copy:manifest', function () {
+  const p = require(`${rootFolder}/package.json`);
+  console.log('package.json', p.version);
   return gulp.src([`${srcFolder}/manifest.json`])
+    .pipe(change((content) => {
+      const contentJSON = JSON.parse(content);
+
+      contentJSON.version = p.version;
+      contentJSON.dependencies = p.dependencies;
+      content = JSON.stringify(contentJSON);
+      return content;
+    }))
+    .pipe(jsonFormat(4))
+    .pipe(gulp.dest(srcFolder))
     .pipe(rename('package.json'))
     .pipe(gulp.dest(distFolder));
 });
@@ -163,9 +178,9 @@ gulp.task('copy:manifest', function () {
  * 9. Copy README.md from / to /dist
  */
 gulp.task('copy:readme', function () {
-    return gulp.src([path.join(rootFolder, 'README.MD')])
-        .pipe(gulp.dest(distFolder));
-  });
+  return gulp.src([path.join(rootFolder, 'README.MD')])
+    .pipe(gulp.dest(distFolder));
+});
 
 /**
  * 10. Delete /.tmp folder
@@ -205,23 +220,23 @@ gulp.task('compile', function () {
     });
 });
 
-gulp.task("typedoc", function() {
-    return gulp
-        .src(sources)
-        .pipe(typedoc({
-            module: "amd",
-            out: "docs/",
-            readme: "README.md",
-            name: "ngx-cs-slider",
-            ignoreCompilerErrors: true
-        }));
+gulp.task("typedoc", function () {
+  return gulp
+    .src(sources)
+    .pipe(typedoc({
+      module: "amd",
+      out: "docs/",
+      readme: "README.md",
+      name: "ngx-cs-slider",
+      ignoreCompilerErrors: true
+    }));
 });
 
 gulp.task("format:doc", function () {
   return gulp
-        .src("docs/**/*.html")
-        .pipe(replace("_@_", "@"))
-        .pipe(gulp.dest("docs/"));
+    .src("docs/**/*.html")
+    .pipe(replace("_@_", "@"))
+    .pipe(gulp.dest("docs/"));
 });
 
 /**
@@ -235,7 +250,9 @@ gulp.task('clean', ['clean:dist', 'clean:tmp', 'clean:build']);
 
 gulp.task('build', ['clean', 'compile']);
 gulp.task('build:watch', ['build', 'watch']);
-gulp.task('docs', function() { runSequence('typedoc', 'format:doc')});
+gulp.task('docs', function () {
+  runSequence('typedoc', 'format:doc')
+});
 gulp.task('docs:watch', ['docs', 'watch']);
 gulp.task('default', ['build:watch']);
 
