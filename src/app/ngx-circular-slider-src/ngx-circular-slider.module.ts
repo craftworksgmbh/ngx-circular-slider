@@ -12,7 +12,7 @@ import {NgXCSClockFaceComponent} from './ngx-cs-clock-face/ngx-cs-clock-face.com
     NgxCircularSliderComponent,
     NgXCSClockFaceComponent
   ],
-  exports:[
+  exports: [
     NgxCircularSliderComponent
   ]
 })
