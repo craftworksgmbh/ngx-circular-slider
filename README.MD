@@ -2,6 +2,9 @@
 ### powered by [craftworks GmbH](https://craftworks.at) used in the own TimeTracking Product
 #### inspired by iOS bedtime and [react-native-circular-slider](https://github.com/bgryszko/react-native-circular-slider)
 
+##Demo
+check out the repo on stackblitz: [demo](https://stackblitz.com/github/craftworksgmbh/ngx-circular-slider)
+
 ![demo-pic](src/assets/slider-demo.gif)
 
 ## Installation
