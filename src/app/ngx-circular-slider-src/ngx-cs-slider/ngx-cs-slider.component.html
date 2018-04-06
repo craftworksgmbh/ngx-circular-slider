@@ -34,6 +34,18 @@
           fill="transparent"/>
 
 
+    <!-- start icon -->
+    <g #startIcon
+    [attr.fill]="this.props.gradientColorFrom"
+    [attr.transform]="getTranslateFrom(start.fromX, start.fromY)">
+    <circle [attr.r]="((this.props.strokeWidth - 1) / 2)"
+           [attr.fill]="this.props.bgCircleColor"
+           [attr.stroke]="this.props.gradientColorFrom"
+           stroke-width="1"/>
+           
+      <ng-content select=".acs-start-icon"></ng-content>
+    </g>
+
     <!-- stop icon -->
     <g #stopIcon
        [attr.fill]="props.gradientColorTo"
@@ -46,18 +58,5 @@
       <ng-content select=".acs-stop-icon"></ng-content>
     </g>
 
-
-    <!-- start icon -->
-    <g #startIcon
-       [attr.fill]="this.props.gradientColorFrom"
-       [attr.transform]="getTranslateFrom(start.fromX, start.fromY)">
-      <circle [attr.r]="((this.props.strokeWidth - 1) / 2)"
-              [attr.fill]="this.props.bgCircleColor"
-              [attr.stroke]="this.props.gradientColorFrom"
-              stroke-width="1"/>
-
-      <ng-content select=".acs-start-icon"></ng-content>
-
-    </g>
   </g>
 </svg>
