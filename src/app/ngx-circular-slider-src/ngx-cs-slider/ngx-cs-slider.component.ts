@@ -9,16 +9,16 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/switchMapTo';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/do';
-import {Subscription} from 'rxjs/Subscription';
-import {interpolateHcl} from 'd3-interpolate';
-import {IArc, IColor, ICoords, IOutput, IProps, ISegment, ISliderChanges} from '../interfaces';
+import { Subscription } from 'rxjs/Subscription';
+import { interpolateHcl } from 'd3-interpolate';
+import { IArc, IColor, ICoords, IOutput, IProps, ISegment, ISliderChanges } from '../interfaces';
 
 const THROTTLE_DEFAULT = 50;
 const DEFAULT_PROPS: IProps = {
@@ -61,7 +61,7 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     const coords: ICoords = (evt instanceof MouseEvent ? {
       x: evt.clientX,
       y: evt.clientY
-    } : {x: evt.changedTouches.item(0).clientX, y: evt.changedTouches.item(0).clientY});
+    } : { x: evt.changedTouches.item(0).clientX, y: evt.changedTouches.item(0).clientY });
     return coords;
   }
 
@@ -81,8 +81,6 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     if (changes.props) {
       this.props = (changes.props.firstChange ? Object.assign(DEFAULT_PROPS, changes.props.currentValue) : DEFAULT_PROPS);
     }
-    this.createSegments();
-    this.calcStartAndStop();
   }
 
   ngOnDestroy() {
@@ -92,7 +90,7 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
   private onUpdate() {
     this.calcStartAndStop();
     this.createSegments();
-    this.update.emit({startAngle: this.startAngle, angleLength: this.angleLength});
+    this.update.emit({ startAngle: this.startAngle, angleLength: this.angleLength });
   }
 
   private setObservables() {
@@ -242,7 +240,7 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   public getContainerWidth() {
-    const {strokeWidth, radius} = this.props;
+    const { strokeWidth, radius } = this.props;
     return strokeWidth + radius * 2 + 2;
   }
 
