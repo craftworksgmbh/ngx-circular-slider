@@ -43,7 +43,7 @@ gulp.task('clean:dist', function () {
  * 2. Clone the /src/app/ngx-circular-slider-src folder into /.tmp/app/ngx-circular-slider-src excluding test files
  */
 gulp.task('copy:source', function () {
-  return gulp.src(sources, {base: `${srcFolder}/app/ngx-circular-slider-src`})
+  return gulp.src(sources, { base: `${srcFolder}/app/ngx-circular-slider-src` })
     .pipe(gulp.dest(tmpFolder));
 });
 
@@ -70,16 +70,7 @@ gulp.task('inline-resources', function () {
  *    compiled modules to the /build folder.
  */
 gulp.task('ngc', function () {
-  return ngc({
-    project: `${tmpFolder}/tsconfig.es5.json`
-  })
-    .then((exitCode) => {
-      if (exitCode === 1) {
-        // This error is caught in the 'compile' task by the runSequence method callback
-        // so that when ngc fails to compile, the whole compile process stops running
-        throw new Error('ngc compilation failed');
-      }
-    });
+  return ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
 });
 
 /**
@@ -88,11 +79,11 @@ gulp.task('ngc', function () {
  */
 gulp.task('rollup:fesm', function () {
   return gulp.src(`${buildFolder}/**/*.js`)
-  // transform the files here.
+    // transform the files here.
     .pipe(rollup({
       // Bundle's entry point
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API
+      input: `${buildFolder}/index.js`,
 
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
@@ -100,7 +91,7 @@ gulp.task('rollup:fesm', function () {
 
       // Format of generated bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
-      format: 'es'
+      output: { format: 'es' }
     }))
     .pipe(gulp.dest(distFolder));
 });
@@ -111,7 +102,7 @@ gulp.task('rollup:fesm', function () {
  */
 gulp.task('rollup:umd', function () {
   return gulp.src(`${buildFolder}/**/*.js`)
-  // transform the files here.
+    // transform the files here.
     .pipe(rollup({
 
       // Bundle's entry point
