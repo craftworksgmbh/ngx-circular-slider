@@ -32,7 +32,8 @@
     "coverage": "ng test --sr -cc",
     "format": "prettier {src/e2e}/**/* --write",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "testcafe-live chrome e2e/**/*.e2e-spec.ts",
+    "e2e:ci": "testcafe all chrome e2e/**/*.e2e-spec.ts --app 'yarn start' --app-init-deplay 5000",
     "publish": "gulp build",
     "docs": "gulp docs",
     "precommit": "lint-staged"
