@@ -1,0 +1,10 @@
+"lint-staged": {
+      "{src, e2e}/**/*.{js, ts, tsx}": [
+        "yarn lint",
+        "git add"
+      ],
+      "{src, e2e}/**/*.{js, ts, tsx, css, scss, md}": [
+        "prettier --write",
+        "git add"
+      ]
+}
