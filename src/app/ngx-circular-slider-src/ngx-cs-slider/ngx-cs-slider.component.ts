@@ -128,10 +128,14 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   private closeStreams() {
-    this.startSubscription.unsubscribe();
-    this.stopSubscription.unsubscribe();
-    this.startSubscription = null;
-    this.stopSubscription = null;
+    if(this.startSubscription){
+      this.startSubscription.unsubscribe();
+      this.startSubscription = null;
+    }
+    if(this.stopSubscription){
+      this.stopSubscription.unsubscribe();
+      this.stopSubscription = null;
+    }
   }
 
   private handleStartPan(evt: MouseEvent | TouchEvent) {
