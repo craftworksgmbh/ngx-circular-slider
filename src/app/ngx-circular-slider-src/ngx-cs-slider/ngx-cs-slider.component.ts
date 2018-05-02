@@ -81,6 +81,7 @@ export class NgxCircularSliderComponent implements OnChanges, OnInit, OnDestroy 
     if (changes.props) {
       this.props = (changes.props.firstChange ? Object.assign(DEFAULT_PROPS, changes.props.currentValue) : DEFAULT_PROPS);
     }
+    this.onUpdate();
   }
 
   ngOnDestroy() {
