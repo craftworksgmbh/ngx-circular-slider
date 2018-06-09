@@ -51,9 +51,8 @@ export class AppModule { }
 
 Once the ngx-circular-slider module is imported, you can use it in your Angular application:
 
-```xml
+```html
 <!-- You can now use the slider in app.component.html -->
-
 <ngx-cs-slider (update)="handleSliderChange($event)"
                [props]="sliderProps"
                [startAngle]="start"
