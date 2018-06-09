@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import { Component, Input, OnChanges } from "@angular/core";
 
 const DEFAULT_RANGE = 48;
 const DEFAULT_TIME_RANGE = 12;
@@ -13,12 +13,11 @@ export interface IClockLines {
 }
 
 @Component({
-  selector: '[ngx-cs-clock-face]',
-  templateUrl: './ngx-cs-clock-face.component.html',
-  styleUrls: ['./ngx-cs-clock-face.component.scss']
+  selector: "[ngx-cs-clock-face]",
+  templateUrl: "./ngx-cs-clock-face.component.html",
+  styleUrls: ["./ngx-cs-clock-face.component.scss"]
 })
 export class NgXCSClockFaceComponent implements OnChanges {
-
   @Input() radius: number;
   @Input() stroke: number;
 
@@ -42,11 +41,11 @@ export class NgXCSClockFaceComponent implements OnChanges {
 
   private createClockLines() {
     for (let i = 0; i < DEFAULT_RANGE; i++) {
-      const cos = Math.cos(2 * Math.PI / DEFAULT_RANGE * i);
-      const sin = Math.sin(2 * Math.PI / DEFAULT_RANGE * i);
+      const cos = Math.cos(((2 * Math.PI) / DEFAULT_RANGE) * i);
+      const sin = Math.sin(((2 * Math.PI) / DEFAULT_RANGE) * i);
       this.clockLines.push({
         id: i,
-        strokeWidth: (i % 4 === 0 ? 3 : 1),
+        strokeWidth: i % 4 === 0 ? 3 : 1,
         x1: cos * this.faceRadius,
         y1: sin * this.faceRadius,
         x2: cos * (this.faceRadius - 7),
@@ -59,10 +58,13 @@ export class NgXCSClockFaceComponent implements OnChanges {
     for (let i = 0; i < DEFAULT_TIME_RANGE; i++) {
       this.clockTexts.push({
         id: i,
-        x: this.textRadius * Math.cos(2 * Math.PI / 12 * i - Math.PI / 2 + Math.PI / 6),
-        y: this.textRadius * Math.sin(2 * Math.PI / 12 * i - Math.PI / 2 + Math.PI / 6)
+        x:
+          this.textRadius *
+          Math.cos(((2 * Math.PI) / 12) * i - Math.PI / 2 + Math.PI / 6),
+        y:
+          this.textRadius *
+          Math.sin(((2 * Math.PI) / 12) * i - Math.PI / 2 + Math.PI / 6)
       });
     }
   }
-
 }

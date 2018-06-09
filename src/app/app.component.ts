@@ -1,19 +1,18 @@
-import {Component} from '@angular/core';
-import {IOutput, IProps} from './ngx-circular-slider-src/interfaces';
+import { Component } from "@angular/core";
+import { IOutput, IProps } from "./../../dist/ngx-circular-slider/public_api";
 
 const SLIDER_PROPS: IProps = {
-  gradientColorFrom: '#0081c5',
-  gradientColorTo: '#aaddf8',
+  gradientColorFrom: "#0081c5",
+  gradientColorTo: "#aaddf8",
   segments: 48,
-  bgCircleColor: 'white'
+  bgCircleColor: "white"
 };
 
 @Component({
-  selector: 'ngx-cs-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
-
 export class AppComponent {
   public startDate: Date;
   public endDate: Date;
@@ -27,16 +26,17 @@ export class AppComponent {
   }
 
   public handleSliderChange(changes: IOutput) {
-    console.info('changes in app ', changes);
+    console.log("changes in app ", changes);
   }
 
   public createRandomValues() {
+    console.log("changes in app randomo");
     this.length += 0.33;
   }
 
   // todo: functions are for using it (demo)
   private calculateMinutesFromAngle(angle) {
-    return Math.round(angle / (2 * Math.PI / (12 * 12))) * 5;
+    return Math.round(angle / ((2 * Math.PI) / (12 * 12))) * 5;
   }
 
   private calculateTimeFromAngle(angle) {
@@ -44,12 +44,11 @@ export class AppComponent {
     const h = Math.floor(minutes / 60);
     const m = minutes - h * 60;
 
-    return {h, m};
+    return { h, m };
   }
 
   private roundAngleToFives(angle) {
-    const fiveMinuteAngle = 2 * Math.PI / 144;
-
+    const fiveMinuteAngle = (2 * Math.PI) / 144;
     return Math.round(angle / fiveMinuteAngle) * fiveMinuteAngle;
   }
 

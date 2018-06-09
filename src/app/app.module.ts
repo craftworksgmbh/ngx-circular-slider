@@ -1,22 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import {NgxCircularSliderModule} from './ngx-circular-slider-src/ngx-circular-slider.module';
+import { AppComponent } from "./app.component";
+import { NgxCircularSliderModule } from "projects/ngx-circular-slider/src/public_api";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    NgxCircularSliderModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, NgxCircularSliderModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,19 +1,16 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {NgXCSClockFaceComponent} from './ngx-cs-clock-face.component';
-import {NgxCircularSliderModule} from '../ngx-circular-slider.module';
+import { NgXCSClockFaceComponent } from "./ngx-cs-clock-face.component";
+import { NgxCircularSliderModule } from "../ngx-circular-slider.module";
 
-describe('NgXCSClockFaceComponent', () => {
+describe("NgXCSClockFaceComponent", () => {
   let component: NgXCSClockFaceComponent;
   let fixture: ComponentFixture<NgXCSClockFaceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxCircularSliderModule
-      ]
-    })
-      .compileComponents();
+      imports: [NgxCircularSliderModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +19,7 @@ describe('NgXCSClockFaceComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

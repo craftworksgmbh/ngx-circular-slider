@@ -1,108 +1,27 @@
-# ngx-circular-slider
-### powered by [craftworks GmbH](https://craftworks.at) used in the own TimeTracking Product
-#### inspired by iOS bedtime and [react-native-circular-slider](https://github.com/bgryszko/react-native-circular-slider)
+# NgxCircularSliderApp
 
-## Demo
-check out the repo on stackblitz: [demo](https://stackblitz.com/github/craftworksgmbh/ngx-circular-slider)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-![demo-pic](src/assets/slider-demo.gif)
+## Development server
 
-## Installation
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-To install this the slider, run:
+## Code scaffolding
 
-```bash
-npm install ngx-circular-slider --save
-```
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Consuming your ngx-circular-slider
+## Build
 
-You can import the slider in any Angular application by running:
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-```bash
-npm install ngx-circular-slider
-```
+## Running unit tests
 
-and then from your Angular `AppModule`:
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+## Running end-to-end tests
 
-import { AppComponent } from './app.component';
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-// Import your library
-import { NgxCircularSliderModule } from 'ngx-circular-slider';
+## Further help
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-
-    NgxCircularSliderModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-
-Once the ngx-circular-slider module is imported, you can use it in your Angular application:
-
-```xml
-<!-- You can now use the slider in app.component.html -->
-
-<ngx-cs-slider (update)="handleSliderChange($event)"
-               [props]="sliderProps"
-               [startAngle]="start"
-               [angleLength]="length">
-```
-
-## API
-
-* **`startAngle`** [`number`] - **required** the angle of the circle where the slider starts
-* **`angleLength`** [`number`] - **required** the length of the circum-radius for the slider
-* **`update`** [`$event({angleLength: number; startAngle: number;})`] - the handler for the update event which returns the angleLength and the startAngle after the slider was changed
-* **`props`** [`IProps`] - the properties for the slider.
-```typescript
-interface IProps {
-  segments?: number;
-  strokeWidth?: number;
-  radius?: number;
-  gradientColorFrom?: string;
-  gradientColorTo?: string;
-  bgCircleColor?: string;
-  showClockFace?: boolean;
-  clockFaceColor?: string;
-}
-```
-
-## todos
-* test module api
-* adapt readme
-* replace gulp with webpack
-* generate types without *.d.ts
-* fixes module-api
-* tests
-
-## Development
-
-Use [angular-cli](https://github.com/angular/angular-cli) tools to generate, test and lint your code.
-Put your library code in **src/app/library** folder. Only this folder and subfolders will be published.
-
-To generate library's `*.js`, `*.d.ts` and `*.metadata.json` files:
-```bash
-npm version patch|minor|major
-npm run publish dist
-```
-
-To generate the doc:
-```bash
-npm run docs
-```
-
-## License
-
-MIT © [Alexander Zulechner@craftworks GmbH](mailto:alexander.zulechner@craftworks.at)
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

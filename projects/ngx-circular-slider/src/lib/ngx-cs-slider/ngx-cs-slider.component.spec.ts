@@ -1,19 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NgxCircularSliderComponent} from './ngx-cs-slider.component';
-import {NgxCircularSliderModule} from '../ngx-circular-slider.module';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NgxCircularSliderComponent } from "./ngx-cs-slider.component";
+import { NgxCircularSliderModule } from "../ngx-circular-slider.module";
 
-
-describe('NgxCircularSliderComponent', () => {
+describe("NgxCircularSliderComponent", () => {
   let component: NgxCircularSliderComponent;
   let fixture: ComponentFixture<NgxCircularSliderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxCircularSliderModule
-      ]
-    })
-      .compileComponents();
+      imports: [NgxCircularSliderModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +18,7 @@ describe('NgxCircularSliderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 });
