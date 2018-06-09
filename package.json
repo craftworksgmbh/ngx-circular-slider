@@ -1,6 +1,25 @@
 {
-  "name": "ngx-circular-slider-app",
+  "name": "ngx-circular-slider",
   "version": "0.6.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/craftworksgmbh/ngx-circular-slider"
+  },
+  "author": {
+    "name": "Alexander Zulechner",
+    "url": "https://craftworks.at"
+  },
+  "keywords": [
+    "angular",
+    "circular-slider",
+    "slider",
+    "iOS bedtime",
+    "timerange"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zualexander/ngx-circular-slider.git/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,7 +32,6 @@
     "format:fix": "pretty-quick --staged",
     "precommit": "run-s lint format:fix"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.3",
     "@angular/common": "^6.0.3",
