@@ -100,7 +100,9 @@ Put your library code in **src/app/lib** folder. Only this folder and subfolders
 ```bash
 npm run build:slider
 npm version patch|minor|major
-npm publish dist
+cd dist/ngx-circular-slider
+npm version patch|minor|major
+npm publish
 ```
 -To generate the doc:
 ```bash
