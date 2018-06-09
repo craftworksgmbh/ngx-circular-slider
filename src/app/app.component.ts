@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IOutput, IProps } from "./../../dist/ngx-circular-slider/public_api";
+import { IOutput, IProps } from "ngx-circular-slider";
 
 const SLIDER_PROPS: IProps = {
   gradientColorFrom: "#0081c5",
