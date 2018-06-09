@@ -51,9 +51,8 @@ export class AppModule { }
 
 Once the ngx-circular-slider module is imported, you can use it in your Angular application:
 
-```xml
+```html
 <!-- You can now use the slider in app.component.html -->
-
 <ngx-cs-slider (update)="handleSliderChange($event)"
                [props]="sliderProps"
                [startAngle]="start"
@@ -82,23 +81,29 @@ interface IProps {
 ## todos
 * test module api
 * adapt readme
-* replace gulp with webpack
-* generate types without *.d.ts
+* replace gulp with webpack --> done with the angular cli
+* generate types without *.d.ts -> done
 * fixes module-api
 * tests
 
 ## Development
 
 Use [angular-cli](https://github.com/angular/angular-cli) tools to generate, test and lint your code.
-Put your library code in **src/app/library** folder. Only this folder and subfolders will be published.
+Put your library code in **src/app/lib** folder. Only this folder and subfolders will be published.
 
-To generate library's `*.js`, `*.d.ts` and `*.metadata.json` files:
+- to make the app run and or change and publish:
+  -  use node version `10.4.` or if you use nvm use `nvm use`
+  - then run `npm install` 
+
+- To generate library's `*.js`, `*.d.ts` and `*.metadata.json` files:
 ```bash
+npm run build:slider
 npm version patch|minor|major
-npm run publish dist
+cd dist/ngx-circular-slider
+npm version patch|minor|major
+npm publish
 ```
-
-To generate the doc:
+-To generate the doc:
 ```bash
 npm run docs
 ```

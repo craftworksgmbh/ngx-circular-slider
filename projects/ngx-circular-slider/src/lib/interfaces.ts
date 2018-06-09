@@ -1,4 +1,4 @@
-import {SimpleChange, SimpleChanges} from '@angular/core';
+import { SimpleChange, SimpleChanges } from "@angular/core";
 
 export interface ISliderChanges extends SimpleChanges {
   props: SimpleChange;
@@ -38,7 +38,6 @@ export interface ICoords {
   x: number;
   y: number;
 }
-
 
 export interface ISegment {
   id: number;
