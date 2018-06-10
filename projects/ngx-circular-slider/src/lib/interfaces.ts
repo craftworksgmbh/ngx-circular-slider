@@ -1,7 +1,13 @@
 import { SimpleChange, SimpleChanges } from "@angular/core";
+import * as moment from "moment";
 
 export interface ISliderChanges extends SimpleChanges {
   props: SimpleChange;
+}
+
+export interface ISliderStartStopInput {
+  start: moment.Moment;
+  stop: moment.Moment;
 }
 
 export interface IOutput {
