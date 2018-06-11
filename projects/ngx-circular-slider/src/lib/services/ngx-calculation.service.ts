@@ -1,4 +1,13 @@
-import { Injectable, SimpleChange, SimpleChanges } from "@angular/core";
+import {
+  EventEmitter,
+  Injectable,
+  Input,
+  Output,
+  SimpleChange,
+  SimpleChanges
+} from "@angular/core";
+import { ISliderStartStopInput } from "../interfaces";
+import * as moment from "moment";
 
 const HOURS_HALF_DAY = 12;
 const HOURS_FULL_DAY = 24;

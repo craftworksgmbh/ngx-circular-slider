@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { IOutput, IProps } from "ngx-circular-slider";
+import * as moment from "moment";
 
 const SLIDER_PROPS: IProps = {
   gradientColorFrom: "#0081c5",
@@ -16,8 +17,6 @@ const SLIDER_PROPS: IProps = {
 export class AppComponent {
   public startDate: Date;
   public endDate: Date;
-  public start = 0;
-  public length = 0;
   public sliderProps = SLIDER_PROPS;
 
   constructor() {
@@ -31,32 +30,8 @@ export class AppComponent {
 
   public createRandomValues() {
     console.log("changes in app randomo");
-    this.length += 0.33;
-  }
-
-  // todo: functions are for using it (demo)
-  private calculateMinutesFromAngle(angle) {
-    return Math.round(angle / ((2 * Math.PI) / (12 * 12))) * 5;
-  }
-
-  private calculateTimeFromAngle(angle) {
-    const minutes = this.calculateMinutesFromAngle(angle);
-    const h = Math.floor(minutes / 60);
-    const m = minutes - h * 60;
-
-    return { h, m };
-  }
-
-  private roundAngleToFives(angle) {
-    const fiveMinuteAngle = (2 * Math.PI) / 144;
-    return Math.round(angle / fiveMinuteAngle) * fiveMinuteAngle;
-  }
-
-  private padMinutes(min) {
-    if (`${min}`.length < 2) {
-      return `0${min}`;
-    }
-
-    return min;
+    this.endDate = moment(this.endDate)
+      .add(1, "hour")
+      .toDate();
   }
 }
