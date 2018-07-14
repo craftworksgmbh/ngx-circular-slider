@@ -108,18 +108,18 @@ export class NgxCalculationService {
 
   constructor() {}
 
-  ngOnChanges(changes: InputChanges) {
-    const dates = changes.datesInput;
-    if (
-      dates &&
-      dates.currentValue &&
-      dates.currentValue !== dates.previousValue
-    ) {
-      [this.start, this.length] = [
-        ...this.handleInputDates(dates.currentValue)
-      ];
-    }
-  }
+  // ngOnChanges(changes: InputChanges) {
+  //   const dates = changes.datesInput;
+  //   if (
+  //     dates &&
+  //     dates.currentValue &&
+  //     dates.currentValue !== dates.previousValue
+  //   ) {
+  //     [this.start, this.length] = [
+  //       ...this.handleInputDates(dates.currentValue)
+  //     ];
+  //   }
+  // }
 
   private handleInputDates(
     correctedDates: ISliderStartStopInput
