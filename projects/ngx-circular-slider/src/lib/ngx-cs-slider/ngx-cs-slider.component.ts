@@ -18,7 +18,8 @@ import {
   IOutput,
   IProps,
   ISegment,
-  ISliderChanges
+  ISliderChanges,
+  ISliderStartStopInput
 } from "../interfaces";
 import { switchMap, takeUntil, throttleTime } from "rxjs/operators";
 
@@ -42,9 +43,10 @@ const DEFAULT_PROPS: IProps = {
 export class NgxCircularSliderComponent
   implements OnChanges, OnInit, OnDestroy {
   @Input() props: IProps;
-  @Input() startAngle: number;
-  @Input() angleLength: number;
+  @Input() startAndStop: ISliderStartStopInput;
   @Output() update: EventEmitter<IOutput> = new EventEmitter<IOutput>();
+  private startAngle: number;
+  private angleLength: number;
   public segments: ISegment[];
   public start: IArc;
   public stop: IArc;

@@ -6,13 +6,18 @@ export interface ISliderChanges extends SimpleChanges {
 }
 
 export interface ISliderStartStopInput {
+  start: string;
+  stop: string;
+}
+
+export interface IStartStop {
   start: moment.Moment;
   stop: moment.Moment;
 }
 
 export interface IOutput {
-  angleLength: number;
-  startAngle: number;
+  start: string;
+  stop: string;
 }
 
 export interface IProps {
