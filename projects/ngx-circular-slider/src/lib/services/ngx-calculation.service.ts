@@ -23,9 +23,6 @@ interface InputChanges extends SimpleChanges {
   providedIn: "root"
 })
 export class NgxCalculationService {
-  @Output() private onTimeChange = new EventEmitter();
-  @Input() private datesInput: ISliderStartStopInput;
-  public props = SLIDER_PROPS;
   public start: number;
   public length: number;
   // indicates if it's AM or PM
