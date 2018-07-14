@@ -1,4 +1,5 @@
 import { SimpleChange, SimpleChanges } from "@angular/core";
+import * as moment from "moment";
 
 export interface ISliderChanges extends SimpleChanges {
   props: SimpleChange;
@@ -9,9 +10,14 @@ export interface ISliderStartStopInput {
   stop: string;
 }
 
+export interface IStartStop {
+  start: moment.Moment;
+  stop: moment.Moment;
+}
+
 export interface IOutput {
-  angleLength: number;
-  startAngle: number;
+  start: string;
+  stop: string;
 }
 
 export interface IProps {
