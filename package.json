@@ -29,8 +29,8 @@
     "test": "jest --watch",
     "test:ci": "jest --runInBand",
     "test:coverage": "jest --coverage",
-//    "format:fix": "pretty-quick --staged",
-//    "precommit": "run-s lint format:fix",
+    "format:fix": "pretty-quick --staged",
+    "precommit": "run-s lint format:fix",
     "test:watch": "jest --watch"
   },
   "dependencies": {
