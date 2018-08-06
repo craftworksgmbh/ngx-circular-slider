@@ -100,10 +100,11 @@ export class NgxCircularSliderComponent
   private onUpdate() {
     this.calcStartAndStop();
     this.createSegments();
-    this.update.emit({
-      startAngle: this.startAngle,
-      angleLength: this.angleLength
-    });
+    //todo: emit output of date-strings
+    // this.update.emit({
+    //   startAngle: this.startAngle,
+    //   angleLength: this.angleLength
+    // });
   }
 
   private setObservables() {

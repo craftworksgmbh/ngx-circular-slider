@@ -13,12 +13,12 @@ const MINUTES_TIME_INTERVAL = 5;
 })
 export class NgxCalculationService {
   // indicates if it's AM or PM
-  private static pm: boolean;
+  private static pm = false;
 
   /**
    * do the calculation from a moment date to a radian number for the position of the circular slider
-   * @param {moment.Moment} date
-   * @returns {number}
+   * @param  date
+   * @returns
    */
   private static calculateRadianFromTime(
     date: moment.Moment = moment()
@@ -68,7 +68,7 @@ export class NgxCalculationService {
       return { start: start.clone(), stop: stop.clone() };
     }
   }
-
+  /*
   private static calculateAngleLengthFromTwoRadians(
     start: number,
     stop: number
@@ -78,100 +78,100 @@ export class NgxCalculationService {
     const alpha = this.calculateAlphaFromTwoDegrees(startDegree, stopDegree);
     return (alpha / 360) * 2 * Math.PI;
   }
-
-  private static calculateAlphaFromTwoDegrees(
-    startDegree: number,
-    stopDegree: number
-  ): number {
-    return 360 - (startDegree - stopDegree);
-  }
-
-  private static calculateAlphaFromRadianToDegree(angleLength: number): number {
-    return (angleLength * 360) / (2 * Math.PI);
-  }
-
-  private static createRoundedDatesSinceMidnight(
-    minutes: number
-  ): moment.Moment {
-    const roundedMinutes =
-      (minutes / MINUTES_TIME_INTERVAL) * MINUTES_TIME_INTERVAL +
-      MINUTES_TIME_INTERVAL;
-    return moment()
-      .startOf("day")
-      .add(roundedMinutes, "minutes")
-      .set("seconds", 0)
-      .set("milliseconds", 0);
-  }
-
-  // ngOnChanges(changes: InputChanges) {
-  //   const dates = changes.datesInput;
-  //   if (
-  //     dates &&
-  //     dates.currentValue &&
-  //     dates.currentValue !== dates.previousValue
-  //   ) {
-  //     [this.start, this.length] = [
-  //       ...this.handleInputDates(dates.currentValue)
-  //     ];
-  //   }
+*/
+  // private static calculateAlphaFromTwoDegrees(
+  //   startDegree: number,
+  //   stopDegree: number
+  // ): number {
+  //   return 360 - (startDegree - stopDegree);
   // }
-
-  private static handleInputDates(
-    correctedDates: IStartStop
-  ): [number, number] {
-    const startRad = NgxCalculationService.calculateRadianFromTime(
-      correctedDates.start
-    );
-    const stopRad = NgxCalculationService.calculateRadianFromTime(
-      correctedDates.stop
-    );
-    const angleLength = NgxCalculationService.calculateAngleLengthFromTwoRadians(
-      startRad,
-      stopRad
-    );
-    NgxCalculationService.pm =
-      correctedDates.start.get("hours") >= HOURS_HALF_DAY;
-
-    return [startRad, angleLength];
-  }
-
-  public static handleSliderChange(change: IOutput) {
-    const startRadian = change.startAngle;
-    const angleLength = change.angleLength;
-    const startDegree = this.radiansToDegrees(startRadian);
-    const alpha = NgxCalculationService.calculateAlphaFromRadianToDegree(
-      angleLength
-    );
-    const stopDegree = startDegree + alpha;
-
-    const startAndStop = NgxCalculationService.calculateTimeFromDegrees(
-      startDegree,
-      stopDegree
-    );
-    NgxCalculationService.onTimeChange.emit(startAndStop);
-  }
-
-  private static calculateTimeFromDegrees(
-    startDegrees: number,
-    stopDegrees: number
-  ): ISliderStartStopInput {
-    const startMinutes =
-      this.degreeToMinutes(startDegrees) +
-      (NgxCalculationService.pm ? FULL_MINUTES_FOR_CLOCK : 0);
-    const stopMinutes =
-      NgxCalculationService.degreeToMinutes(stopDegrees) +
-      (NgxCalculationService.pm ? FULL_MINUTES_FOR_CLOCK : 0);
-    // if the value goes over midnight add half day in minutes
-    const additionalStopMinutes =
-      startMinutes > stopMinutes ? FULL_MINUTES_FOR_CLOCK : 0;
-
-    return {
-      start: NgxCalculationService.createRoundedDatesSinceMidnight(
-        startMinutes
-      ),
-      stop: NgxCalculationService.createRoundedDatesSinceMidnight(
-        stopMinutes + additionalStopMinutes
-      )
-    };
-  }
+  //
+  // private static calculateAlphaFromRadianToDegree(angleLength: number): number {
+  //   return (angleLength * 360) / (2 * Math.PI);
+  // }
+  //
+  // private static createRoundedDatesSinceMidnight(
+  //   minutes: number
+  // ): moment.Moment {
+  //   const roundedMinutes =
+  //     (minutes / MINUTES_TIME_INTERVAL) * MINUTES_TIME_INTERVAL +
+  //     MINUTES_TIME_INTERVAL;
+  //   return moment()
+  //     .startOf("day")
+  //     .add(roundedMinutes, "minutes")
+  //     .set("seconds", 0)
+  //     .set("milliseconds", 0);
+  // }
+  //
+  // // ngOnChanges(changes: InputChanges) {
+  // //   const dates = changes.datesInput;
+  // //   if (
+  // //     dates &&
+  // //     dates.currentValue &&
+  // //     dates.currentValue !== dates.previousValue
+  // //   ) {
+  // //     [this.start, this.length] = [
+  // //       ...this.handleInputDates(dates.currentValue)
+  // //     ];
+  // //   }
+  // // }
+  //
+  // private static handleInputDates(
+  //   correctedDates: IStartStop
+  // ): [number, number] {
+  //   const startRad = NgxCalculationService.calculateRadianFromTime(
+  //     correctedDates.start
+  //   );
+  //   const stopRad = NgxCalculationService.calculateRadianFromTime(
+  //     correctedDates.stop
+  //   );
+  //   const angleLength = NgxCalculationService.calculateAngleLengthFromTwoRadians(
+  //     startRad,
+  //     stopRad
+  //   );
+  //   NgxCalculationService.pm =
+  //     correctedDates.start.get("hours") >= HOURS_HALF_DAY;
+  //
+  //   return [startRad, angleLength];
+  // }
+  //
+  // public static handleSliderChange(change: IOutput) {
+  //   const startRadian = change.startAngle;
+  //   const angleLength = change.angleLength;
+  //   const startDegree = this.radiansToDegrees(startRadian);
+  //   const alpha = NgxCalculationService.calculateAlphaFromRadianToDegree(
+  //     angleLength
+  //   );
+  //   const stopDegree = startDegree + alpha;
+  //
+  //   const startAndStop = NgxCalculationService.calculateTimeFromDegrees(
+  //     startDegree,
+  //     stopDegree
+  //   );
+  //   // NgxCalculationService.onTimeChange.emit(startAndStop);
+  // }
+  //
+  // private static calculateTimeFromDegrees(
+  //   startDegrees: number,
+  //   stopDegrees: number
+  // ): ISliderStartStopInput {
+  //   const startMinutes =
+  //     this.degreeToMinutes(startDegrees) +
+  //     (NgxCalculationService.pm ? FULL_MINUTES_FOR_CLOCK : 0);
+  //   const stopMinutes =
+  //     NgxCalculationService.degreeToMinutes(stopDegrees) +
+  //     (NgxCalculationService.pm ? FULL_MINUTES_FOR_CLOCK : 0);
+  //   // if the value goes over midnight add half day in minutes
+  //   const additionalStopMinutes =
+  //     startMinutes > stopMinutes ? FULL_MINUTES_FOR_CLOCK : 0;
+  //
+  //   return {
+  //     start: NgxCalculationService.createRoundedDatesSinceMidnight(
+  //       startMinutes
+  //     ),
+  //     stop: NgxCalculationService.createRoundedDatesSinceMidnight(
+  //       stopMinutes + additionalStopMinutes
+  //     )
+  //   };
+  // }
 }
