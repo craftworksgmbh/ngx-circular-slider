@@ -42,9 +42,12 @@ const DEFAULT_PROPS: IProps = {
 })
 export class NgxCircularSliderComponent
   implements OnChanges, OnInit, OnDestroy {
-  @Input() props: IProps;
-  @Input() startAndStop: ISliderStartStopInput;
-  @Output() update: EventEmitter<IOutput> = new EventEmitter<IOutput>();
+  @Input()
+  props: IProps;
+  @Input()
+  startAndStop: ISliderStartStopInput;
+  @Output()
+  update: EventEmitter<IOutput> = new EventEmitter<IOutput>();
   private startAngle: number;
   private angleLength: number;
   public segments: ISegment[];
@@ -54,9 +57,12 @@ export class NgxCircularSliderComponent
   private stopSubscription: Subscription;
   private circleCenterX: number;
   private circleCenterY: number;
-  @ViewChild("circle") private circle: ElementRef;
-  @ViewChild("stopIcon") private stopIcon: ElementRef;
-  @ViewChild("startIcon") private startIcon: ElementRef;
+  @ViewChild("circle")
+  private circle: ElementRef;
+  @ViewChild("stopIcon")
+  private stopIcon: ElementRef;
+  @ViewChild("startIcon")
+  private startIcon: ElementRef;
 
   private static extractMouseEventCoords(evt: MouseEvent | TouchEvent) {
     const coords: ICoords =
@@ -100,7 +106,7 @@ export class NgxCircularSliderComponent
   private onUpdate() {
     this.calcStartAndStop();
     this.createSegments();
-    //todo: emit output of date-strings
+    // todo: emit output of date-strings
     // this.update.emit({
     //   startAngle: this.startAngle,
     //   angleLength: this.angleLength

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { IOutput, ISliderStartStopInput, IStartStop } from "../interfaces";
-import * as moment from "moment";
+import { ISliderStartStopInput, IStartStop } from "../interfaces";
+import moment from "moment-es6";
 
 const HOURS_HALF_DAY = 12;
 const HOURS_FULL_DAY = 24;
@@ -68,6 +68,7 @@ export class NgxCalculationService {
       return { start: start.clone(), stop: stop.clone() };
     }
   }
+
   /*
   private static calculateAngleLengthFromTwoRadians(
     start: number,

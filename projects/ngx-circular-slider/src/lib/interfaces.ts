@@ -1,5 +1,5 @@
 import { SimpleChange, SimpleChanges } from "@angular/core";
-import * as moment from "moment";
+import moment from "moment-es6";
 
 export interface ISliderChanges extends SimpleChanges {
   props: SimpleChange;

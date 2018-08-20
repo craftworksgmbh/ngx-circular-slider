@@ -20,6 +20,6 @@
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "d3-interpolate": "^1.2.0",
-    "moment": "^2.22.2"
+    "moment-es6": "^1.0.0"
   }
 }

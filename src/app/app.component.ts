@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { IOutput, IProps } from "ngx-circular-slider";
-import * as moment from "moment";
+import { IOutput, IProps, ISliderStartStopInput } from "ngx-circular-slider";
+import moment from "moment-es6";
 
 const SLIDER_PROPS: IProps = {
   gradientColorFrom: "#0081c5",
@@ -15,13 +15,14 @@ const SLIDER_PROPS: IProps = {
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  public startDate: Date;
-  public endDate: Date;
+  public startAndStop: ISliderStartStopInput;
   public sliderProps = SLIDER_PROPS;
 
   constructor() {
-    this.startDate = new Date();
-    this.endDate = new Date();
+    this.startAndStop = {
+      start: new Date().toISOString(),
+      stop: new Date().toISOString()
+    };
   }
 
   public handleSliderChange(changes: IOutput) {
@@ -29,9 +30,12 @@ export class AppComponent {
   }
 
   public createRandomValues() {
-    console.log("changes in app randomo");
-    this.endDate = moment(this.endDate)
-      .add(1, "hour")
-      .toDate();
+    console.log("changes in app +1 hour");
+    this.startAndStop = {
+      ...this.startAndStop,
+      stop: moment(this.startAndStop.stop)
+        .add(1, "hour")
+        .toISOString(true)
+    };
   }
 }
