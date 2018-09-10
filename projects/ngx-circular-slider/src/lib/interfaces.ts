@@ -36,8 +36,6 @@ export interface IArc {
   fromY: number;
   toX: number;
   toY: number;
-  realToX: number;
-  realToY: number;
 }
 
 export interface IColor {

@@ -1,6 +1,15 @@
 import { Injectable } from "@angular/core";
-import { ISliderStartStopInput, IStartStop } from "../interfaces";
+import {
+  IArc,
+  IColor,
+  ICoords,
+  IProps,
+  ISegment,
+  ISliderStartStopInput,
+  IStartStop
+} from "../interfaces";
 import moment from "moment-es6";
+import { interpolateHcl } from "d3-interpolate";
 
 const HOURS_HALF_DAY = 12;
 const HOURS_FULL_DAY = 24;
@@ -12,8 +21,20 @@ const MINUTES_TIME_INTERVAL = 5;
   providedIn: "root"
 })
 export class NgxCalculationService {
+  get props(): IProps {
+    return { ...this.componentProps };
+  }
+
+  set props(props: IProps) {
+    this.componentProps = { ...props };
+  }
+
+  private componentProps: IProps;
+  private pm = false;
+  private startAngle: number;
+  private angleLength: number;
+
   // indicates if it's AM or PM
-  private static pm = false;
 
   /**
    * do the calculation from a moment date to a radian number for the position of the circular slider
@@ -32,6 +53,20 @@ export class NgxCalculationService {
     );
 
     return NgxCalculationService.degreesToRadian(timeInDegrees);
+  }
+
+  private static extractMouseEventCoords(evt: MouseEvent | TouchEvent) {
+    const coords: ICoords =
+      evt instanceof MouseEvent
+        ? {
+            x: evt.clientX,
+            y: evt.clientY
+          }
+        : {
+            x: evt.changedTouches.item(0).clientX,
+            y: evt.changedTouches.item(0).clientY
+          };
+    return coords;
   }
 
   private static degreesToRadian(degrees: number): number {
@@ -175,4 +210,121 @@ export class NgxCalculationService {
   //     )
   //   };
   // }
+
+  public static calculateArcColor(
+    index,
+    segments,
+    gradientColorFrom,
+    gradientColorTo
+  ) {
+    const interpolate = interpolateHcl(gradientColorFrom, gradientColorTo);
+
+    return {
+      fromColor: interpolate(index / segments),
+      toColor: interpolate((index + 1) / segments)
+    };
+  }
+
+  private calculateArcCircle(
+    indexInput,
+    segments,
+    radius,
+    startAngleInput = 0,
+    angleLengthInput = 2 * Math.PI
+  ): IArc {
+    // Add 0.0001 to the possible angle so when start = stop angle, whole circle is drawn
+    const startAngle = startAngleInput % (2 * Math.PI);
+    const angleLength = angleLengthInput % (2 * Math.PI);
+    const index = indexInput + 1;
+    const fromAngle = (angleLength / segments) * (index - 1) + startAngle;
+    const toAngle = (angleLength / segments) * index + startAngle;
+    const fromX = radius * Math.sin(fromAngle);
+    const fromY = -radius * Math.cos(fromAngle);
+
+    // add 0.005 to start drawing a little bit earlier so segments stick together
+    const toX = radius * Math.sin(toAngle + 0.005);
+    const toY = -radius * Math.cos(toAngle + 0.005);
+
+    return {
+      fromX,
+      fromY,
+      toX,
+      toY
+    };
+  }
+
+  public setCircleCenter(circleNativeElement: Element): [number, number] {
+    // todo: nicer solution to use document.body?
+    const bodyRect = document.body.getBoundingClientRect();
+    const elemRect = circleNativeElement.getBoundingClientRect();
+    const px = elemRect.left - bodyRect.left;
+    const py = elemRect.top - bodyRect.top;
+    const halfOfContainer = this.getContainerWidth() / 2;
+
+    return [px + halfOfContainer, py + halfOfContainer];
+  }
+
+  public createSegments(): ISegment[] {
+    const segments: ISegment[] = [];
+    for (let i = 0; i < this.props.segments; i++) {
+      const id = i;
+      const colors: IColor = this.calculateArcColor(
+        id,
+        this.props.segments,
+        this.props.gradientColorFrom,
+        this.props.gradientColorTo
+      );
+      const arcs: IArc = this.calculateArcCircle(
+        id,
+        this.props.segments,
+        this.props.radius,
+        this.startAngle,
+        this.angleLength
+      );
+
+      segments.push({
+        id: id,
+        d: `M ${arcs.fromX.toFixed(2)} ${arcs.fromY.toFixed(2)} A ${
+          this.props.radius
+        } ${this.props.radius} 
+        0 0 1 ${arcs.toX.toFixed(2)} ${arcs.toY.toFixed(2)}`,
+        colors: Object.assign({}, colors),
+        arcs: Object.assign({}, arcs)
+      });
+    }
+    return segments;
+  }
+
+  public getTranslate(): string {
+    return ` translate(
+  ${this.props.strokeWidth / 2 + this.props.radius + 1},
+  ${this.props.strokeWidth / 2 + this.props.radius + 1} )`;
+  }
+
+  public getContainerSideLength(): number {
+    const { strokeWidth, radius } = this.props;
+    return strokeWidth + radius * 2 + 2;
+  }
+
+  public calcStartAndStop(
+    startAngle: number,
+    angleLength: number
+  ): { start: IArc; stop: IArc } {
+    return {
+      start: NgxCalculationService.calculateArcCircle(
+        0,
+        this.props.segments,
+        this.props.radius,
+        startAngle,
+        angleLength
+      ),
+      stop: NgxCalculationService.calculateArcCircle(
+        this.props.segments - 1,
+        this.props.segments,
+        this.props.radius,
+        startAngle,
+        angleLength
+      )
+    };
+  }
 }

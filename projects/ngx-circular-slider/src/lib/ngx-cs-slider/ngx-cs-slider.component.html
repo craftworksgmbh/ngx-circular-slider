@@ -1,5 +1,5 @@
-<svg #circle [attr.height]="getContainerWidth()"
-     [attr.width]="getContainerWidth()">
+<svg #circle [attr.height]="containerSideLength"
+     [attr.width]="containerSideLength">
 
   <defs>
     <linearGradient *ngFor="let segment of segments"
