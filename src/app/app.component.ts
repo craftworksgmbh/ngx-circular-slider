@@ -10,7 +10,7 @@ const SLIDER_PROPS: IProps = {
 };
 
 @Component({
-  selector: "app-root",
+  selector: "app-component",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
