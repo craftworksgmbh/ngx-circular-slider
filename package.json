@@ -60,7 +60,7 @@
     "@netbasal/spectator": "^2.0.2",
     "@types/d3-interpolate": "^1.2.0",
     "@types/node": "~10.7.1",
-    "codelyzer": "~4.4.4",
+    "codelyzer": "^4.5.0",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.1",
