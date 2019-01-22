@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -41,10 +42,14 @@ const DEFAULT_PROPS: IProps = {
 })
 export class NgxCircularSliderComponent
   implements OnChanges, OnInit, OnDestroy {
-  @Input() props: IProps;
-  @Input() startAngle: number;
-  @Input() angleLength: number;
-  @Output() update: EventEmitter<IOutput> = new EventEmitter<IOutput>();
+  @Input()
+  props: IProps;
+  @Input()
+  startAngle: number;
+  @Input()
+  angleLength: number;
+  @Output()
+  update: EventEmitter<IOutput> = new EventEmitter<IOutput>();
   public segments: ISegment[];
   public start: IArc;
   public stop: IArc;
@@ -52,9 +57,12 @@ export class NgxCircularSliderComponent
   private stopSubscription: Subscription;
   private circleCenterX: number;
   private circleCenterY: number;
-  @ViewChild("circle") private circle: ElementRef;
-  @ViewChild("stopIcon") private stopIcon: ElementRef;
-  @ViewChild("startIcon") private startIcon: ElementRef;
+  @ViewChild("circle")
+  private circle: ElementRef;
+  @ViewChild("stopIcon")
+  private stopIcon: ElementRef;
+  @ViewChild("startIcon")
+  private startIcon: ElementRef;
 
   private static extractMouseEventCoords(evt: MouseEvent | TouchEvent) {
     const coords: ICoords =
@@ -70,7 +78,7 @@ export class NgxCircularSliderComponent
     return coords;
   }
 
-  constructor() {
+  constructor(private zone: NgZone) {
     this.props = DEFAULT_PROPS;
     this.startAngle = 0;
     this.angleLength = 0;
@@ -79,7 +87,9 @@ export class NgxCircularSliderComponent
   ngOnInit() {
     this.setCircleCenter();
     this.onUpdate();
-    this.setObservables();
+    this.zone.runOutsideAngular(() => {
+      this.setObservables();
+    });
   }
 
   ngOnChanges(changes: ISliderChanges) {
@@ -96,11 +106,13 @@ export class NgxCircularSliderComponent
   }
 
   private onUpdate() {
-    this.calcStartAndStop();
-    this.createSegments();
-    this.update.emit({
-      startAngle: this.startAngle,
-      angleLength: this.angleLength
+    this.zone.run(() => {
+      this.calcStartAndStop();
+      this.createSegments();
+      this.update.emit({
+        startAngle: this.startAngle,
+        angleLength: this.angleLength
+      });
     });
   }
 
