@@ -47,7 +47,7 @@
     "core-js": "^2.5.4",
     "d3-interpolate": "^1.2.0",
     "moment-es6": "^1.0.0",
-    "ngx-take-until-destroy": "^4.1.0",
+    "ngx-take-until-destroy": "^5.2.3",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },
