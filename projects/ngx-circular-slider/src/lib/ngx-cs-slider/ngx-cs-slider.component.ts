@@ -52,9 +52,12 @@ export class NgxCircularSliderComponent
   private stopSubscription: Subscription;
   private circleCenterX: number;
   private circleCenterY: number;
-  @ViewChild("circle") private circle: ElementRef;
-  @ViewChild("stopIcon") private stopIcon: ElementRef;
-  @ViewChild("startIcon") private startIcon: ElementRef;
+  @ViewChild("circle", { static: true })
+  private circle: ElementRef;
+  @ViewChild("stopIcon", { static: true })
+  private stopIcon: ElementRef;
+  @ViewChild("startIcon", { static: true })
+  private startIcon: ElementRef;
 
   private static extractMouseEventCoords(evt: MouseEvent | TouchEvent) {
     const coords: ICoords =

@@ -92,7 +92,7 @@ Use [angular-cli](https://github.com/angular/angular-cli) tools to generate, tes
 Put your library code in **src/app/lib** folder. Only this folder and subfolders will be published.
 
 - to make the app run and or change and publish:
-  -  use node version `10.4.` or if you use nvm use `nvm use`
+  -  use node version `10.16.` or if you use nvm use `nvm use`
   - then run `npm install` 
 
 - To generate library's `*.js`, `*.d.ts` and `*.metadata.json` files:
